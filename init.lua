@@ -9,7 +9,7 @@ vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 
 vim.cmd.colorscheme "catppuccin"
 
-vim.lsp.enable({ "lua_ls", "gopls", "tinymist", "nixd" })
+vim.lsp.enable({ "lua_ls", "gopls", "tinymist", "nixd", "zls" })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
@@ -93,7 +93,7 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live gr
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope helt tags" })
 
 local configs = require"nvim-treesitter"
-local langs = { "go", "nix", "lua", "vimdoc", "markdown", "sql" }
+local langs = { "go", "nix", "lua", "vimdoc", "markdown", "sql", "zig" }
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = langs,
 	callback = function() 
