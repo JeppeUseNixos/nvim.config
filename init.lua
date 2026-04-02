@@ -18,6 +18,18 @@ vim.lsp.config('*', {
 	root_markers = { ".git" },
 })
 
+vim.lsp.config('nixd', {
+	capabilities = capabilities,
+	settings = {
+		nixd = {
+			formatting = {
+				command = { "alejandra" },
+			},
+		},
+	},
+	root_markers = { ".git" },
+})
+
 vim.lsp.config("gopls", {
 	settings = {
 		gopls = {
@@ -64,11 +76,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename() <cr>", opts)
 		vim.keymap.set("n", "<leader>fm", "<cmd>lua vim.lsp.buf.format() <cr>", opts)
 		vim.keymap.set("n", "gc", "<cmd>lua vim.lsp.buf.code_action() <cr>", opts)
-
 	end,
 })
 
-local cmp = require"cmp"
+local cmp = require "cmp"
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 cmp.setup({
@@ -77,12 +88,12 @@ cmp.setup({
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-e>"] = cmp.mapping.abort(),
-		["<CR>"] = cmp.mapping.confirm({select = false}),
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
 	}),
 	sources = {
 		{ name = "path" },
 		{ name = "nvim_lsp" },
-		{ name = "buffer", keyword_length = 3 },
+		{ name = "buffer",  keyword_length = 3 },
 	},
 })
 
@@ -92,11 +103,11 @@ vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find f
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope helt tags" })
 
-local configs = require"nvim-treesitter"
+local configs = require "nvim-treesitter"
 local langs = { "go", "nix", "lua", "vimdoc", "markdown", "sql", "zig" }
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = langs,
-	callback = function() 
+	callback = function()
 		vim.treesitter.start()
 		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 	end,
