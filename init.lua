@@ -104,7 +104,7 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live gr
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope helt tags" })
 
 local configs = require "nvim-treesitter"
-local langs = { "go", "nix", "lua", "vimdoc", "markdown", "sql", "zig" }
+local langs = { "go", "nix", "lua", "vimdoc", "markdown", "sql", "zig", "typst" }
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = langs,
 	callback = function()
